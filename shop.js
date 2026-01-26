@@ -360,6 +360,54 @@ function renderGallery(filter = 'all') {
 
   // Insert cards into the gallery
   gallery.innerHTML = cardsHTML;
+
+  // Render carousel dots
+  const dotsContainer = document.getElementById('carousel-dots');
+  const dotsHTML = filteredItems.map((item, index) =>
+    `<span class="dot ${index === 0 ? 'active' : ''}" data-index="${index}"></span>`
+  ).join('');
+  dotsContainer.innerHTML = dotsHTML;
+
+  // Set up pottery carousel scroll tracking
+  setupPotteryCarousel();
+}
+
+// ============================================
+// FUNCTION: Setup Pottery Carousel
+// Handle scroll tracking and dot navigation
+// ============================================
+function setupPotteryCarousel() {
+  const track = document.getElementById('gallery');
+  const dots = document.querySelectorAll('#carousel-dots .dot');
+
+  if (!track || dots.length === 0) return;
+
+  // Update active dot based on scroll position
+  track.addEventListener('scroll', () => {
+    const scrollPosition = track.scrollLeft;
+    const itemWidth = track.offsetWidth;
+    const currentIndex = Math.round(scrollPosition / itemWidth);
+
+    dots.forEach((dot, index) => {
+      if (index === currentIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  });
+
+  // Click dot to scroll to that item
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      const index = parseInt(dot.getAttribute('data-index'));
+      const itemWidth = track.offsetWidth;
+      track.scrollTo({
+        left: itemWidth * index,
+        behavior: 'smooth'
+      });
+    });
+  });
 }
 
 // ============================================

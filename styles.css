@@ -648,6 +648,65 @@ a:hover {
 }
 
 /* ============================================
+   POTTERY CAROUSEL - Swipable Shopping
+   ============================================ */
+
+.pottery-carousel {
+  position: relative;
+  margin-top: var(--space-xl);
+  overflow: hidden;
+}
+
+.pottery-carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 0;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  scroll-behavior: smooth;
+}
+
+.pottery-carousel-track::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.pottery-carousel-track .card {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.pottery-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.pottery-carousel-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--gray-light);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pottery-carousel-dots .dot.active {
+  background-color: var(--gray);
+}
+
+/* Desktop: Show centered single item */
+@media (min-width: 769px) {
+  .pottery-carousel-track {
+    justify-content: center;
+  }
+}
+
+/* ============================================
    FEATURES GRID - Alternating Image/Text Layout
    ============================================ */
 
