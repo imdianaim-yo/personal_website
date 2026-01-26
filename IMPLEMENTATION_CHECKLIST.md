@@ -61,8 +61,8 @@
   - [x] Add pottery descriptions and prices
 
 ## Phase 5: Stripe Integration
-- [ ] Set up Stripe account
-- [ ] Create payment links for each pottery item
+- [x] Set up Stripe account
+- [x] Create payment links for each pottery item
 - [ ] Add Stripe payment links to potteryItems array
 - [ ] Test "Buy Now" buttons
 
@@ -79,7 +79,7 @@
 ## Phase 7: GitHub Deployment
 - [x] Create GitHub account (if needed)
 - [x] Create new repository: "personal_website"
-- [ ] Upload all files to repository
+- [x] Upload all files to repository
 - [ ] Enable GitHub Pages in repo settings
 - [ ] Test live site URL
 - [ ] Share site link!
