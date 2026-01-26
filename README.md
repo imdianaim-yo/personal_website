@@ -1,4 +1,4 @@
-# Pottery Resume Website
+# Personal Website
 
 A personal website combining professional resume/portfolio with a pottery e-commerce shop. Built with pure HTML, CSS, and JavaScript - no frameworks, no build tools, zero monthly costs.
 
