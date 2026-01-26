@@ -1,0 +1,901 @@
+/* ============================================
+   MINIMAL GALLERY SITE - Clean & Elegant
+   ============================================ */
+
+:root {
+  /* Soft, neutral palette */
+  --cream: #f5f3f0;          /* Off-white background */
+  --white: #ffffff;
+  --black: #1a1a1a;          /* Near-black for text */
+  --gray: #666666;           /* Mid-gray for secondary text */
+  --gray-light: #d4d4d4;     /* Light gray for borders */
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 3rem;
+  --space-xl: 4rem;
+  --space-xxl: 6rem;
+
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-serif: "Calluna", Georgia, serif;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  color: var(--black);
+  background-color: var(--cream);
+}
+
+/* ============================================
+   NAVIGATION - Minimal & Elegant
+   ============================================ */
+nav {
+  background-color: var(--cream);
+  padding: var(--space-md) var(--space-lg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-family: 'Satisfy', cursive;
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--black);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-md);
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--black);
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--gray);
+}
+
+.nav-links a.active {
+  color: var(--black);
+}
+
+/* ============================================
+   LAYOUT CONTAINERS
+   ============================================ */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+}
+
+.container-narrow {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: var(--space-md);
+  color: var(--black);
+}
+
+h1 {
+  font-family: 'Satisfy', cursive;
+  font-size: 3.5rem;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
+h2 {
+  font-family: 'Satisfy', cursive;
+  font-size: 2rem;
+  margin-top: var(--space-xl);
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+p {
+  margin-bottom: var(--space-sm);
+  font-weight: 400;
+  color: var(--gray);
+}
+
+a {
+  color: var(--black);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--gray);
+}
+
+/* ============================================
+   BUTTONS - Minimal
+   ============================================ */
+.btn {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--black);
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #333;
+  color: var(--white);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--black);
+  border: 1px solid var(--black);
+}
+
+.btn-secondary:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.btn-secondary:disabled {
+  background-color: transparent;
+  color: var(--gray);
+  border: 1px solid var(--gray-light);
+  cursor: not-allowed;
+}
+
+/* ============================================
+   CARD COMPONENT - Photo-First with Carousel
+   ============================================ */
+.card {
+  background-color: transparent;
+  overflow: hidden;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover {
+  opacity: 0.95;
+}
+
+.card-image-container {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  background-color: var(--white);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-content {
+  padding: var(--space-md) 0;
+}
+
+.card-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  margin-bottom: var(--space-xs);
+  color: var(--black);
+}
+
+.card-price {
+  font-size: 1rem;
+  color: var(--gray);
+  font-weight: 400;
+  margin-bottom: var(--space-sm);
+}
+
+.card-description {
+  color: var(--gray);
+  font-size: 0.95rem;
+  margin-bottom: var(--space-md);
+  line-height: 1.6;
+}
+
+.card-footer {
+  margin-top: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card-footer .btn {
+  width: 100%;
+  text-align: center;
+}
+
+/* ============================================
+   GRID LAYOUTS
+   ============================================ */
+.grid {
+  display: grid;
+  gap: var(--space-xl);
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+/* ============================================
+   CARD CAROUSEL CONTROLS
+   ============================================ */
+
+/* Carousel Navigation Buttons */
+.card-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--white);
+  border: none;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.card-image-container:hover .card-carousel-btn {
+  opacity: 1;
+}
+
+.card-carousel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.card-carousel-prev {
+  left: var(--space-sm);
+}
+
+.card-carousel-next {
+  right: var(--space-sm);
+}
+
+/* Carousel Dots (indicator dots at bottom) */
+.card-carousel-dots {
+  position: absolute;
+  bottom: var(--space-sm);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-dot:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
+}
+
+.carousel-dot.active {
+  background-color: var(--white);
+  transform: scale(1.2);
+}
+
+/* ============================================
+   FILTER BUTTONS - Clean
+   ============================================ */
+.filter-container {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xxl);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter-btn {
+  padding: 0;
+  background-color: transparent;
+  color: var(--gray);
+  border: none;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.filter-btn:hover {
+  color: var(--black);
+}
+
+.filter-btn.active {
+  color: var(--black);
+}
+
+.filter-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: var(--black);
+}
+
+/* ============================================
+   HOMEPAGE - Hero Section
+   ============================================ */
+.hero {
+  text-align: center;
+  padding: var(--space-xxl) var(--space-md);
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  font-family: 'Satisfy', cursive;
+  font-size: 4rem;
+  margin-bottom: var(--space-md);
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--black);
+}
+
+.hero p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: var(--space-xl);
+}
+
+/* ============================================
+   RESUME SPECIFIC STYLES
+   ============================================ */
+.resume-section {
+  margin-bottom: var(--space-xxl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.resume-section:last-child {
+  border-bottom: none;
+}
+
+.job, .education-item {
+  margin-bottom: var(--space-lg);
+}
+
+.job-header, .education-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.job-title, .degree {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--black);
+  text-transform: lowercase;
+}
+
+.company, .school {
+  color: var(--gray);
+  font-weight: 400;
+  font-size: 1.1rem;
+  text-transform: lowercase;
+}
+
+.date {
+  color: var(--gray);
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.resume-section ul {
+  color: var(--gray);
+  margin-left: 1.5rem;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.resume-section ul li {
+  margin-bottom: var(--space-xs);
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  list-style: none;
+  margin-left: 0;
+}
+
+.skill-tag {
+  background-color: transparent;
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--gray-light);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--black);
+}
+
+/* ============================================
+   TIMELINE (Sketch Style)
+   ============================================ */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin-top: 2rem;
+}
+
+/* Vertical line connecting all items */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background-color: var(--gray-light);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+  padding-left: 2rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Timeline dot (circle marker) */
+.timeline-dot {
+  position: absolute;
+  left: -2rem;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--white);
+  border: 3px solid var(--black);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Special styling for the start dot (education) */
+.timeline-dot-start {
+  background-color: var(--black);
+  border-color: var(--black);
+}
+
+.timeline-content {
+  position: relative;
+}
+
+.timeline-year {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--white);
+  background-color: var(--black);
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.timeline-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--black);
+  margin-bottom: 0.25rem;
+  text-transform: lowercase;
+}
+
+.timeline-company {
+  color: var(--gray);
+  font-weight: 400;
+  font-size: 1rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.timeline-focus {
+  color: var(--gray);
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 0;
+  font-style: italic;
+}
+
+/* ============================================
+   ABOUT GALLERY - Responsive Grid/Carousel
+   ============================================ */
+
+.about-gallery {
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.about-gallery-track {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.about-gallery-track img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+.about-gallery-dots {
+  display: none; /* Hidden on desktop */
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--gray-light);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: var(--gray);
+}
+
+/* Mobile: Transform into carousel */
+@media (max-width: 768px) {
+  .about-gallery {
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  .about-gallery-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 0;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+  }
+
+  .about-gallery-track::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .about-gallery-track img {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    height: 350px;
+  }
+
+  .about-gallery-dots {
+    display: flex;
+  }
+}
+
+/* ============================================
+   FEATURES GRID - Alternating Image/Text Layout
+   ============================================ */
+
+.features-grid {
+  display: grid;
+  gap: var(--space-xl); /* 4rem spacing between features */
+  margin-top: var(--space-xl);
+}
+
+.feature-item {
+  display: grid;
+  grid-template-columns: 70% 30%; /* Image 70%, Text 30% */
+  gap: var(--space-lg); /* 3rem gap between image and text */
+  align-items: center;
+}
+
+.feature-image {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.feature-image a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.feature-image a:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.feature-image img,
+.feature-image video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.feature-content {
+  padding: var(--space-md);
+}
+
+.feature-title {
+  font-family: 'Satisfy', cursive;
+  font-size: 2rem;
+  margin-bottom: var(--space-md);
+  color: var(--black);
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
+.feature-description {
+  color: var(--gray);
+  line-height: 1.7;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+/* Alternating layout - even items flip order */
+.feature-item:nth-of-type(even) {
+  grid-template-columns: 30% 70%; /* Text left, image right */
+}
+
+.feature-item:nth-of-type(even) .feature-image {
+  order: 2;
+}
+
+.feature-item:nth-of-type(even) .feature-content {
+  order: 1;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .features-grid {
+    gap: var(--space-lg); /* 3rem spacing on mobile */
+    margin-top: var(--space-lg);
+  }
+
+  .feature-item {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm); /* 1rem gap between image and text */
+  }
+
+  /* Keep image above text on mobile (natural HTML order) */
+  .feature-item:nth-of-type(even) {
+    grid-template-columns: 1fr; /* Reset to single column */
+  }
+
+  .feature-image {
+    height: 250px; /* Smaller height for mobile */
+    border-radius: 4px; /* Subtle rounding for polish */
+  }
+
+  .feature-image img,
+  .feature-image video {
+    border-radius: 4px;
+  }
+
+  .feature-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .feature-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .feature-content {
+    padding: 0;
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .timeline {
+    padding-left: 1.5rem;
+  }
+
+  .timeline-item {
+    padding-left: 1.5rem;
+  }
+
+  .timeline-dot {
+    left: -1.5rem;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-center {
+  text-align: center;
+}
+
+.mt-lg {
+  margin-top: var(--space-lg);
+}
+
+.mb-lg {
+  margin-bottom: var(--space-lg);
+}
+
+.sold-out {
+  color: var(--gray);
+  font-style: italic;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    margin-top: var(--space-lg);
+  }
+
+  .resume-section h2 {
+    margin-top: 0;
+  }
+
+  nav {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .nav-logo {
+    position: static;
+    transform: none;
+    margin-bottom: var(--space-sm);
+  }
+
+  .nav-links {
+    gap: var(--space-md);
+  }
+
+  .hero {
+    padding: var(--space-xl) var(--space-md);
+    min-height: 50vh;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .btn {
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .btn-secondary {
+    font-size: 0.75rem !important;
+  }
+
+  .card-image-container {
+    height: 400px;
+  }
+
+  .container, .container-narrow {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .job-header, .education-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Always show carousel buttons on mobile (no hover) */
+  .card-carousel-btn {
+    opacity: 1;
+    width: 35px;
+    height: 35px;
+    font-size: 1.25rem;
+  }
+
+  .card-carousel-prev {
+    left: var(--space-xs);
+  }
+
+  .card-carousel-next {
+    right: var(--space-xs);
+  }
+
+  .carousel-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
