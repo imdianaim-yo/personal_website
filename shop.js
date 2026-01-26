@@ -294,10 +294,39 @@ function renderGallery(filter = 'all') {
       allMedia.push(item.video);
     }
 
-    // Get current media to display
+    // Initialize carousel state for this item if not exists
+    if (!carouselState[item.id]) {
+      carouselState[item.id] = 0;
+    }
     const currentIndex = carouselState[item.id];
-    const currentMedia = allMedia[currentIndex];
-    const isVideo = currentMedia && (currentMedia.endsWith('.mp4') || currentMedia.endsWith('.mp4') || currentMedia.endsWith('.webm'));
+
+    // Render ALL media items for swipable carousel
+    const mediaHTML = allMedia.map((media, index) => {
+      const isVideo = media.endsWith('.mp4') || media.endsWith('.mov') || media.endsWith('.webm');
+      if (isVideo) {
+        return `
+          <video
+            class="card-image"
+            autoplay
+            loop
+            muted
+            playsinline
+            onerror="this.outerHTML='<img src=\\'https://via.placeholder.com/400x400?text=Video+Error\\' class=\\'card-image\\'>'"
+          >
+            <source src="${media}" type="video/mp4">
+          </video>
+        `;
+      } else {
+        return `
+          <img
+            src="${media}"
+            alt="${item.name}"
+            class="card-image"
+            onerror="this.src='https://via.placeholder.com/400x400?text=Image+Coming+Soon'"
+          >
+        `;
+      }
+    }).join('');
 
     // Create carousel navigation if multiple media items
     let carouselControls = '';
@@ -307,42 +336,16 @@ function renderGallery(filter = 'all') {
         <button class="card-carousel-btn card-carousel-next" onclick="navigateCardCarousel(${item.id}, 1, event)" aria-label="Next image">›</button>
         <div class="card-carousel-dots">
           ${allMedia.map((_, index) =>
-            `<span class="carousel-dot ${index === currentIndex ? 'active' : ''}" onclick="goToMediaIndex(${item.id}, ${index}, event)"></span>`
+            `<span class="carousel-dot ${index === currentIndex ? 'active' : ''}" data-item-id="${item.id}" data-index="${index}"></span>`
           ).join('')}
         </div>
-      `;
-    }
-
-    // Create media element (image or video)
-    let mediaHTML;
-    if (isVideo) {
-      mediaHTML = `
-        <video
-          class="card-image"
-          autoplay
-          loop
-          muted
-          playsinline
-          onerror="this.outerHTML='<img src=\\'https://via.placeholder.com/400x400?text=Video+Error\\' class=\\'card-image\\'>'"
-        >
-          <source src="${currentMedia}" type="video/mp4">
-        </video>
-      `;
-    } else {
-      mediaHTML = `
-        <img
-          src="${currentMedia}"
-          alt="${item.name}"
-          class="card-image"
-          onerror="this.src='https://via.placeholder.com/400x400?text=Image+Coming+Soon'"
-        >
       `;
     }
 
     // Return card HTML (using template literal)
     return `
       <div class="card">
-        <div class="card-image-container">
+        <div class="card-image-container" data-item-id="${item.id}">
           ${mediaHTML}
           ${carouselControls}
         </div>
@@ -361,50 +364,52 @@ function renderGallery(filter = 'all') {
   // Insert cards into the gallery
   gallery.innerHTML = cardsHTML;
 
-  // Render carousel dots
-  const dotsContainer = document.getElementById('carousel-dots');
-  const dotsHTML = filteredItems.map((item, index) =>
-    `<span class="dot ${index === 0 ? 'active' : ''}" data-index="${index}"></span>`
-  ).join('');
-  dotsContainer.innerHTML = dotsHTML;
-
-  // Set up pottery carousel scroll tracking
-  setupPotteryCarousel();
+  // Set up swipable carousels for each card
+  setupSwipableCarousels();
 }
 
 // ============================================
-// FUNCTION: Setup Pottery Carousel
-// Handle scroll tracking and dot navigation
+// FUNCTION: Setup Swipable Carousels
+// Handle scroll tracking and dot updates for card image carousels
 // ============================================
-function setupPotteryCarousel() {
-  const track = document.getElementById('gallery');
-  const dots = document.querySelectorAll('#carousel-dots .dot');
+function setupSwipableCarousels() {
+  const containers = document.querySelectorAll('.card-image-container');
 
-  if (!track || dots.length === 0) return;
+  containers.forEach(container => {
+    const itemId = parseInt(container.getAttribute('data-item-id'));
+    const dots = container.querySelectorAll('.carousel-dot');
 
-  // Update active dot based on scroll position
-  track.addEventListener('scroll', () => {
-    const scrollPosition = track.scrollLeft;
-    const itemWidth = track.offsetWidth;
-    const currentIndex = Math.round(scrollPosition / itemWidth);
+    if (dots.length === 0) return;
 
-    dots.forEach((dot, index) => {
-      if (index === currentIndex) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
+    // Update active dot based on scroll position
+    container.addEventListener('scroll', () => {
+      const scrollPosition = container.scrollLeft;
+      const imageWidth = container.offsetWidth;
+      const currentIndex = Math.round(scrollPosition / imageWidth);
+
+      // Update carousel state
+      carouselState[itemId] = currentIndex;
+
+      // Update dots
+      dots.forEach((dot, index) => {
+        if (index === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
     });
-  });
 
-  // Click dot to scroll to that item
-  dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      const index = parseInt(dot.getAttribute('data-index'));
-      const itemWidth = track.offsetWidth;
-      track.scrollTo({
-        left: itemWidth * index,
-        behavior: 'smooth'
+    // Click dot to scroll to that image
+    dots.forEach((dot) => {
+      dot.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const index = parseInt(dot.getAttribute('data-index'));
+        const imageWidth = container.offsetWidth;
+        container.scrollTo({
+          left: imageWidth * index,
+          behavior: 'smooth'
+        });
       });
     });
   });
@@ -431,13 +436,17 @@ function filterByCategory(category) {
 
 // ============================================
 // FUNCTION: Navigate Card Carousel
-// Move to next/previous image on a specific card
+// Move to next/previous image on a specific card by scrolling
 // ============================================
 function navigateCardCarousel(itemId, direction, event) {
   // Prevent any parent click handlers
   event.stopPropagation();
 
-  // Find the item to get total media count
+  // Find the container for this item
+  const container = document.querySelector(`.card-image-container[data-item-id="${itemId}"]`);
+  if (!container) return;
+
+  // Get the item to count media
   const item = potteryItems.find(i => i.id === itemId);
   if (!item) return;
 
@@ -447,29 +456,21 @@ function navigateCardCarousel(itemId, direction, event) {
   }
 
   // Update index with wrapping
-  carouselState[itemId] += direction;
-  if (carouselState[itemId] < 0) {
-    carouselState[itemId] = allMedia.length - 1;
-  } else if (carouselState[itemId] >= allMedia.length) {
-    carouselState[itemId] = 0;
+  let newIndex = carouselState[itemId] + direction;
+  if (newIndex < 0) {
+    newIndex = allMedia.length - 1;
+  } else if (newIndex >= allMedia.length) {
+    newIndex = 0;
   }
 
-  // Re-render gallery to show new image
-  renderGallery(currentFilter);
-}
+  carouselState[itemId] = newIndex;
 
-// ============================================
-// FUNCTION: Go to Specific Media Index
-// Jump to a specific image when clicking dots
-// ============================================
-function goToMediaIndex(itemId, index, event) {
-  // Prevent any parent click handlers
-  event.stopPropagation();
-
-  carouselState[itemId] = index;
-
-  // Re-render gallery to show selected image
-  renderGallery(currentFilter);
+  // Scroll to the new image
+  const imageWidth = container.offsetWidth;
+  container.scrollTo({
+    left: imageWidth * newIndex,
+    behavior: 'smooth'
+  });
 }
 
 // ============================================
