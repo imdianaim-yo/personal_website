@@ -208,6 +208,11 @@ a:hover {
   opacity: 0.95;
 }
 
+.card-image-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 .card-image-container {
   position: relative;
   width: 100%;
@@ -323,34 +328,68 @@ a:hover {
   right: var(--space-sm);
 }
 
-/* Carousel Dots (indicator dots at bottom) */
+/* Carousel Dots (below carousel like work page) */
 .card-carousel-dots {
-  position: absolute;
-  bottom: var(--space-sm);
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
-  gap: 8px;
-  z-index: 10;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .carousel-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: var(--gray-light);
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease;
 }
 
 .carousel-dot:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-  transform: scale(1.2);
+  background-color: var(--gray);
 }
 
 .carousel-dot.active {
-  background-color: var(--white);
-  transform: scale(1.2);
+  background-color: var(--gray);
+}
+
+/* ============================================
+   COMMISSIONS BANNER
+   ============================================ */
+.commissions-banner {
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--gray-light);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.commissions-title {
+  font-family: 'Satisfy', cursive;
+  font-size: 1.75rem;
+  color: var(--black);
+  margin: 0 0 1rem 0;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
+.commissions-text {
+  color: var(--gray);
+  line-height: 1.7;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.commissions-text a {
+  color: var(--black);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.commissions-text a:hover {
+  color: var(--gray);
 }
 
 /* ============================================
@@ -838,17 +877,26 @@ a:hover {
 
   nav {
     padding: var(--space-sm) var(--space-md);
+    position: static; /* Remove sticky on mobile */
   }
 
   .nav-container {
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: 0.5rem; /* Reduced gap between logo and nav links */
   }
 
   .nav-logo {
-    position: static;
+    position: sticky; /* Make logo sticky on mobile */
+    top: 0;
+    left: 0;
+    right: 0;
     transform: none;
-    margin-bottom: var(--space-sm);
+    background-color: var(--cream);
+    padding: var(--space-sm);
+    z-index: 100;
+    width: 100%;
+    text-align: center;
+    border-bottom: none;
   }
 
   .nav-links {
@@ -882,6 +930,19 @@ a:hover {
     height: 400px;
   }
 
+  .commissions-banner {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .commissions-title {
+    font-size: 1.5rem;
+  }
+
+  .commissions-text {
+    font-size: 0.95rem;
+  }
+
   .container, .container-narrow {
     padding: var(--space-lg) var(--space-md);
   }
@@ -907,8 +968,4 @@ a:hover {
     right: var(--space-xs);
   }
 
-  .carousel-dot {
-    width: 10px;
-    height: 10px;
-  }
 }

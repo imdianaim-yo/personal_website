@@ -233,6 +233,22 @@ const potteryItems = [
     category: "bowls",
     inStock: true,
     stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+  },
+  {
+    id: 14,
+    name: "pear-shaped vase - matte charcoal",
+    price: 45,
+    images: [
+      "images/pottery/14_Pear vase charcoal/IMG_4295.jpg",
+      "images/pottery/14_Pear vase charcoal/IMG_4296.jpg",
+      "images/pottery/14_Pear vase charcoal/IMG_4297.jpg",
+      "images/pottery/14_Pear vase charcoal/IMG_4298.jpg"
+    ],
+    video: null,
+    description: "hand-thrown pear-shaped vase in a rich matte charcoal glaze. perfect for a statement piece or fresh flowers.",
+    category: "functional",
+    inStock: true,
+    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
   }
 ];
 
@@ -345,8 +361,10 @@ function renderGallery(filter = 'all') {
     // Return card HTML (using template literal)
     return `
       <div class="card">
-        <div class="card-image-container" data-item-id="${item.id}">
-          ${mediaHTML}
+        <div class="card-image-wrapper">
+          <div class="card-image-container" data-item-id="${item.id}">
+            ${mediaHTML}
+          </div>
           ${carouselControls}
         </div>
         <div class="card-content">
