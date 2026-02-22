@@ -360,8 +360,8 @@ a:hover {
   max-width: 700px;
   margin: 0 auto 3rem;
   padding: 0.9rem 2rem;
-  background-color: rgba(0, 0, 0, 0.02);
-  border: 1px solid var(--gray-light);
+  background-color: transparent;
+  border: 1px solid #6b7c5a;
   border-radius: 4px;
   text-align: center;
 }
@@ -376,19 +376,19 @@ a:hover {
 }
 
 .commissions-header:hover .commissions-title {
-  color: var(--gray);
+  color: #4e5c40;
 }
 
 .commissions-toggle-icon {
   font-size: 1.25rem;
-  color: var(--gray);
+  color: #6b7c5a;
   line-height: 1;
   transition: color 0.2s ease;
   margin-top: 0.15rem;
 }
 
 .commissions-header:hover .commissions-toggle-icon {
-  color: var(--black);
+  color: #4e5c40;
 }
 
 .commission-drawer {
@@ -408,7 +408,7 @@ a:hover {
 .commissions-title {
   font-family: 'Satisfy', cursive;
   font-size: 1.75rem;
-  color: var(--black);
+  color: #6b7c5a;
   margin: 0 0 1rem 0;
   font-weight: 400;
   text-transform: lowercase;
