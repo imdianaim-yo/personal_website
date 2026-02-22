@@ -366,6 +366,45 @@ a:hover {
   text-align: center;
 }
 
+.commissions-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.commissions-header:hover .commissions-title {
+  color: var(--gray);
+}
+
+.commissions-toggle-icon {
+  font-size: 1.25rem;
+  color: var(--gray);
+  line-height: 1;
+  transition: color 0.2s ease;
+  margin-top: 0.15rem;
+}
+
+.commissions-header:hover .commissions-toggle-icon {
+  color: var(--black);
+}
+
+.commission-drawer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.commissions-banner.open .commission-drawer {
+  max-height: 700px;
+}
+
+.commission-drawer-content {
+  padding-top: 1.5rem;
+}
+
 .commissions-title {
   font-family: 'Satisfy', cursive;
   font-size: 1.75rem;
@@ -373,6 +412,11 @@ a:hover {
   margin: 0 0 1rem 0;
   font-weight: 400;
   text-transform: lowercase;
+  transition: color 0.2s ease;
+}
+
+.commissions-header .commissions-title {
+  margin: 0;
 }
 
 .commissions-text {

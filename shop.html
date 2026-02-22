@@ -37,24 +37,31 @@
     </p>
 
     <!-- COMMISSIONS SECTION -->
-    <div class="commissions-banner">
-      <p class="commissions-title">custom commissions</p>
-      <p class="commissions-text">tell me what you're envisioning — i'll make it.</p>
-      <form class="commission-form" id="commissionForm">
-        <div class="commission-field">
-          <input type="text" id="commissionName" name="name" placeholder="your name" required>
+    <div class="commissions-banner" id="commissionsBanner">
+      <div class="commissions-header" id="commissionsToggle">
+        <span class="commissions-title">custom commissions</span>
+        <span class="commissions-toggle-icon">+</span>
+      </div>
+      <div class="commission-drawer">
+        <div class="commission-drawer-content">
+          <p class="commissions-text">tell me what you're envisioning — i'll make it.</p>
+          <form class="commission-form" id="commissionForm">
+            <div class="commission-field">
+              <input type="text" id="commissionName" name="name" placeholder="your name" required>
+            </div>
+            <div class="commission-field">
+              <input type="text" id="commissionContact" name="contact" placeholder="email or phone">
+            </div>
+            <div class="commission-field">
+              <textarea id="commissionDream" name="dream" placeholder="what are you dreaming about making?" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="commission-submit">send it</button>
+          </form>
+          <div class="commission-success" id="commissionSuccess">
+            <p class="commissions-title" style="margin: 0;">got it</p>
+            <p class="commissions-text">i'll be in touch soon.</p>
+          </div>
         </div>
-        <div class="commission-field">
-          <input type="text" id="commissionContact" name="contact" placeholder="email or phone">
-        </div>
-        <div class="commission-field">
-          <textarea id="commissionDream" name="dream" placeholder="what are you dreaming about making?" rows="4" required></textarea>
-        </div>
-        <button type="submit" class="commission-submit">send it</button>
-      </form>
-      <div class="commission-success" id="commissionSuccess">
-        <p class="commissions-title">got it</p>
-        <p class="commissions-text">i'll be in touch soon.</p>
       </div>
     </div>
 

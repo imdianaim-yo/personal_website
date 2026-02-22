@@ -591,6 +591,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Commission accordion toggle
+  const commissionsToggle = document.getElementById('commissionsToggle');
+  const commissionsBanner = document.getElementById('commissionsBanner');
+  if (commissionsToggle) {
+    commissionsToggle.addEventListener('click', function() {
+      const isOpen = commissionsBanner.classList.toggle('open');
+      commissionsToggle.querySelector('.commissions-toggle-icon').textContent = isOpen ? '−' : '+';
+    });
+  }
+
   // Commission form submit
   const form = document.getElementById('commissionForm');
   if (form) {
