@@ -306,7 +306,7 @@ function renderGallery(filter = 'all') {
           onclick="handleUpvote(${item.id}, this)"
           ${hasVoted ? 'disabled' : ''}
         >
-          ${hasVoted ? '♡ adding to the backlog!' : '♡ want this made again?'}
+          ${hasVoted ? '♡ adding to the backlog!' : '♡ bring this back!'}
         </button>
         <span class="upvote-count" id="upvote-count-${item.id}"></span>
       `;
