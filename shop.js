@@ -331,10 +331,11 @@ function renderGallery(filter = 'all') {
         return `
           <video
             class="card-image"
-            autoplay
             loop
             muted
             playsinline
+            preload="none"
+            data-autoplay
             onerror="this.outerHTML='<img src=\\'https://via.placeholder.com/400x400?text=Video+Error\\' class=\\'card-image\\'>'"
           >
             <source src="${media}" type="video/mp4">
@@ -346,6 +347,7 @@ function renderGallery(filter = 'all') {
             src="${media}"
             alt="${item.name}"
             class="card-image"
+            loading="${index === 0 ? 'eager' : 'lazy'}"
             onerror="this.src='https://via.placeholder.com/400x400?text=Image+Coming+Soon'"
           >
         `;
@@ -392,6 +394,9 @@ function renderGallery(filter = 'all') {
 
   // Set up swipable carousels for each card
   setupSwipableCarousels();
+
+  // Set up Intersection Observer so videos only play when visible
+  setupVideoAutoplay();
 
   // Load live upvote counts from Firebase for sold-out items
   loadUpvoteCounts(filteredItems);
@@ -442,6 +447,27 @@ function setupSwipableCarousels() {
       });
     });
   });
+}
+
+// ============================================
+// FUNCTION: Setup Video Autoplay via Intersection Observer
+// Videos only play when at least 25% visible on screen — stops downloading off-screen videos
+// ============================================
+function setupVideoAutoplay() {
+  const videos = document.querySelectorAll('video[data-autoplay]');
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.play();
+        } else {
+          entry.target.pause();
+        }
+      });
+    },
+    { threshold: 0.25 } // trigger when 25% of the video is visible
+  );
+  videos.forEach(video => observer.observe(video));
 }
 
 // ============================================
