@@ -80,9 +80,10 @@
 - [x] Create GitHub account (if needed)
 - [x] Create new repository: "personal_website"
 - [x] Upload all files to repository
-- [ ] Enable GitHub Pages in repo settings
-- [ ] Test live site URL
-- [ ] Share site link!
+- [x] Enable GitHub Pages in repo settings
+- [x] Test live site URL
+- [x] Share site link!
+- [x] Deploy to dianaim.com
 
 ## Optional Enhancements (Future)
 - [ ] Add YouTube video embed on shop page

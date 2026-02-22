@@ -24,7 +24,7 @@ const potteryItems = [
     video: "images/pottery/1_Ranch butter bowl/IMG_4113 4.mp4",
     description: "hand-thrown stoneware serving bowl in ranch butter glaze. fired at cone 10. 8 in diameter; 2.25 in height.",
     category: "bowls",
-    inStock: true,
+    inStock: false,
     stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
   },
   {
@@ -59,7 +59,7 @@ const potteryItems = [
     video: "images/pottery/3_Green grater/IMG_4154 3.mp4",
     description: "functional garlic grater in a beautiful rich green color. hand-thrown and hand-etched. 4.25in diameter x 1.15in height.",
     category: "functional",
-    inStock: true,
+    inStock: false,
     stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
   },
   {
@@ -144,7 +144,7 @@ const potteryItems = [
     video: "images/pottery/8_Sand soup bowls/IMG_4133 3.mp4",
     description: "beautiful taupe (romanticized as burnt butter) soup bowls in a matte glaze. 7 inches diameter x 3.25 inches height.",
     category: "bowls",
-    inStock: true,
+    inStock: false,
     stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
   },
   {
@@ -294,14 +294,22 @@ function renderGallery(filter = 'all') {
     if (item.inStock) {
       buttonHTML = `
         <a href="https://www.instagram.com/imdianaim/" target="_blank" class="btn">
-          Purchase - contact @imdianaim on instagram
+          In Stock - DM @imdianaim on instagram
         </a>
-        <button class="btn btn-secondary" disabled style="font-size: 0.85rem;">
-          Buy now (working on online payments!)
-        </button>
       `;
     } else {
-      buttonHTML = `<button class="btn" disabled style="opacity: 0.5; cursor: not-allowed;">Sold Out</button>`;
+      const hasVoted = sessionStorage.getItem(`upvote_${item.id}`);
+      buttonHTML = `
+        <button class="btn" disabled style="opacity: 0.5; cursor: not-allowed;">Sold Out</button>
+        <button
+          class="upvote-btn ${hasVoted ? 'upvote-voted' : ''}"
+          onclick="handleUpvote(${item.id}, this)"
+          ${hasVoted ? 'disabled' : ''}
+        >
+          ${hasVoted ? '♡ adding to the backlog!' : '♡ want this made again?'}
+        </button>
+        <span class="upvote-count" id="upvote-count-${item.id}"></span>
+      `;
     }
 
     // Combine images and video into one media array
@@ -384,6 +392,9 @@ function renderGallery(filter = 'all') {
 
   // Set up swipable carousels for each card
   setupSwipableCarousels();
+
+  // Load live upvote counts from Firebase for sold-out items
+  loadUpvoteCounts(filteredItems);
 }
 
 // ============================================
@@ -488,6 +499,52 @@ function navigateCardCarousel(itemId, direction, event) {
   container.scrollTo({
     left: imageWidth * newIndex,
     behavior: 'smooth'
+  });
+}
+
+// ============================================
+// FUNCTION: Handle Upvote
+// Called when a user clicks "want this made again?"
+// Uses Firebase to increment a shared counter, sessionStorage to prevent double-voting
+// ============================================
+function handleUpvote(itemId, btn) {
+  // Guard: bail out if they've already voted this session
+  if (sessionStorage.getItem(`upvote_${itemId}`)) return;
+
+  // Mark voted immediately (optimistic — before Firebase responds)
+  sessionStorage.setItem(`upvote_${itemId}`, 'true');
+
+  // Update button UI right away so it feels instant
+  btn.textContent = '♡ adding to the backlog!';
+  btn.disabled = true;
+  btn.classList.add('upvote-voted');
+
+  // Increment count in Firebase using a transaction
+  // A transaction is safer than a plain set() because it handles two people
+  // clicking at the exact same millisecond — Firebase serializes them correctly
+  const countRef = firebase.database().ref(`upvotes/${itemId}`);
+  countRef.transaction(current => (current || 0) + 1);
+}
+
+// ============================================
+// FUNCTION: Load Upvote Counts
+// Subscribes to Firebase for each sold-out item and updates count spans live
+// ============================================
+function loadUpvoteCounts(items) {
+  items.forEach(item => {
+    if (!item.inStock) {
+      const countRef = firebase.database().ref(`upvotes/${item.id}`);
+      // .on('value') keeps a live subscription — count updates in real-time
+      // if another visitor votes while you're on the page
+      countRef.on('value', snapshot => {
+        const count = snapshot.val() || 0;
+        const el = document.getElementById(`upvote-count-${item.id}`);
+        // Only show the label once there are at least 3 votes (avoids showing "1 person wants this")
+        if (el && count >= 3) {
+          el.textContent = `${count} people want this back`;
+        }
+      });
+    }
   });
 }
 

@@ -65,6 +65,25 @@
     </div>
   </div>
 
+  <!-- Firebase SDK (loaded via CDN — no npm/build step needed) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+  <!-- Firebase Config — replace placeholder values with your project's credentials -->
+  <!-- To get these: console.firebase.google.com → your project → Project Settings → Your apps → Config -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyALUbxRcGkhk4It2QkaJkR3Lutj8NVVwHE",
+      authDomain: "dianaim-website.firebaseapp.com",
+      databaseURL: "https://dianaim-website-default-rtdb.firebaseio.com",
+      projectId: "dianaim-website",
+      storageBucket: "dianaim-website.firebasestorage.app",
+      messagingSenderId: "506034651207",
+      appId: "1:506034651207:web:5d71cc291dc0e225c1b162"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
   <!-- Link to JavaScript file -->
   <script src="shop.js"></script>
 </body>

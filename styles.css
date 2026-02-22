@@ -969,3 +969,33 @@ a:hover {
   }
 
 }
+
+/* ============================================
+   UPVOTE BUTTON — Sold-out demand capture
+   ============================================ */
+.upvote-btn {
+  font-size: 0.85rem;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: 0.75rem;
+  color: #6b7c5a;
+  cursor: pointer;
+}
+
+.upvote-btn:hover {
+  color: var(--black);
+}
+
+.upvote-voted {
+  color: var(--gray);
+  cursor: not-allowed;
+}
+
+.upvote-count {
+  font-size: 0.78rem;
+  color: #6b7c5a;
+  text-align: center;
+  display: block;
+  margin-top: 0.25rem;
+}
