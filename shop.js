@@ -617,6 +617,8 @@ document.addEventListener('DOMContentLoaded', function() {
       });
 
       if (response.ok) {
+        document.getElementById('commissionsToggle').style.display = 'none';
+        document.querySelector('.commission-drawer-content > .commissions-text').style.display = 'none';
         form.style.display = 'none';
         document.getElementById('commissionSuccess').style.display = 'block';
       } else {
