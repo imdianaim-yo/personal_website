@@ -43,7 +43,7 @@ const potteryItems = [
     description: "hand-thrown stoneware blates (bowl plates) in pistachio green glaze. fired at cone 10. 7 in diameter; 1.25 in height.",
     category: "blates",
     inStock: true,
-    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+    stripeLink: "https://buy.stripe.com/7sYaEWa36bGC7ij3I21ZS02"
   },
   {
     id: 3,
