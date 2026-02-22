@@ -359,7 +359,7 @@ a:hover {
 .commissions-banner {
   max-width: 700px;
   margin: 0 auto 3rem;
-  padding: 2rem;
+  padding: 0.9rem 2rem;
   background-color: rgba(0, 0, 0, 0.02);
   border: 1px solid var(--gray-light);
   border-radius: 4px;
