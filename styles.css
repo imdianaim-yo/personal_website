@@ -392,6 +392,68 @@ a:hover {
   color: var(--gray);
 }
 
+.commission-form {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: left;
+}
+
+.commission-field input,
+.commission-field textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--gray-light);
+  border-radius: 4px;
+  background-color: var(--white);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--black);
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+
+.commission-field input::placeholder,
+.commission-field textarea::placeholder {
+  color: #bbbbbb;
+}
+
+.commission-field input:focus,
+.commission-field textarea:focus {
+  border-color: var(--gray);
+}
+
+.commission-field textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+.commission-submit {
+  margin-top: 0.5rem;
+  padding: 0.75rem 2.5rem;
+  background-color: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  align-self: center;
+}
+
+.commission-submit:hover {
+  background-color: var(--gray);
+}
+
+.commission-success {
+  display: none;
+  padding: 1rem 0;
+}
+
 /* ============================================
    FILTER BUTTONS - Clean
    ============================================ */

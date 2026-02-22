@@ -590,6 +590,28 @@ document.addEventListener('DOMContentLoaded', function() {
       filterByCategory(category);
     });
   });
+
+  // Commission form submit
+  const form = document.getElementById('commissionForm');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('commissionName').value.trim();
+      const contact = document.getElementById('commissionContact').value.trim();
+      const dream = document.getElementById('commissionDream').value.trim();
+
+      const subject = encodeURIComponent('commission request from ' + name);
+      const body = encodeURIComponent(
+        'name: ' + name + '\n' +
+        'contact: ' + (contact || 'not provided') + '\n\n' +
+        'what they\'re dreaming about:\n' + dream
+      );
+      window.location.href = 'mailto:imdianaim@gmail.com?subject=' + subject + '&body=' + body;
+
+      form.style.display = 'none';
+      document.getElementById('commissionSuccess').style.display = 'block';
+    });
+  }
 });
 
 /* ============================================
