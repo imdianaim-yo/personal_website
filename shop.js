@@ -594,22 +594,25 @@ document.addEventListener('DOMContentLoaded', function() {
   // Commission form submit
   const form = document.getElementById('commissionForm');
   if (form) {
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
-      const name = document.getElementById('commissionName').value.trim();
-      const contact = document.getElementById('commissionContact').value.trim();
-      const dream = document.getElementById('commissionDream').value.trim();
+      const submitBtn = form.querySelector('.commission-submit');
+      submitBtn.textContent = 'sending...';
+      submitBtn.disabled = true;
 
-      const subject = encodeURIComponent('commission request from ' + name);
-      const body = encodeURIComponent(
-        'name: ' + name + '\n' +
-        'contact: ' + (contact || 'not provided') + '\n\n' +
-        'what they\'re dreaming about:\n' + dream
-      );
-      window.location.href = 'mailto:imdianaim@gmail.com?subject=' + subject + '&body=' + body;
+      const response = await fetch('https://formspree.io/f/mqedyrdy', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
 
-      form.style.display = 'none';
-      document.getElementById('commissionSuccess').style.display = 'block';
+      if (response.ok) {
+        form.style.display = 'none';
+        document.getElementById('commissionSuccess').style.display = 'block';
+      } else {
+        submitBtn.textContent = 'something went wrong — try again';
+        submitBtn.disabled = false;
+      }
     });
   }
 });
