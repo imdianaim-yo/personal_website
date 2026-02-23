@@ -308,7 +308,7 @@ function renderGallery(filter = 'all') {
     if (item.inStock) {
       buttonHTML = `
         <a href="${item.stripeLinkLocal}" target="_blank" class="btn">
-          Local Pickup — $${item.price}
+          Local Delivery — $${item.price}
         </a>
         <a href="${item.stripeLinkShipping}" target="_blank" class="btn btn-secondary">
           Ship to me — $${item.price + 15}
@@ -679,7 +679,7 @@ document.addEventListener('DOMContentLoaded', function() {
      description: "your description here in lowercase.",
      category: "vases", // "mugs", "bowls", "vases", "plates"
      inStock: true,
-     stripeLinkLocal: "https://buy.stripe.com/local-link-here",   // local pickup (no shipping)
+     stripeLinkLocal: "https://buy.stripe.com/local-link-here",   // local delivery (no shipping)
      stripeLinkShipping: "https://buy.stripe.com/shipping-link-here" // US shipping ($15 flat)
    }
 
