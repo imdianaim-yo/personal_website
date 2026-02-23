@@ -17,6 +17,22 @@ Ask: "What's the price in dollars?" (numbers only, e.g. 30)
 **Question 3 — Category**
 Ask: "What category?" with these exact options: `bowls`, `blates`, `matcha bowls`, `plates`, `functional`
 
+**Competitor research (after Question 3)**
+Before asking Question 4, use the WebSearch tool to search Etsy for comparable listings. Search for something like:
+`site:etsy.com handmade pottery [ITEM_NAME] [CATEGORY]`
+
+From the top results, extract:
+- Price range (what are similar pieces selling for?)
+- How sellers describe their pieces (tone, what details they highlight)
+- Any positioning angles that stand out
+
+Then briefly tell the user what you found:
+"Quick Etsy check: similar [item type] are going for $X–$Y. Here's what's selling well: [1–2 observations]. Your price of $Z looks [competitive / a bit low / a bit high]."
+
+Use the competitor descriptions as additional context when writing Diana's description in Question 4.
+
+---
+
 **Question 4 — Details for description**
 Ask: "Tell me about this piece — glaze, color, dimensions, anything special about it?" (raw details, not a polished description — e.g. "matte sage green, fired cone 10, 6in diameter 3in height, really pretty color")
 
