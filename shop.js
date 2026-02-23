@@ -25,7 +25,8 @@ const potteryItems = [
     description: "hand-thrown stoneware serving bowl in ranch butter glaze. fired at cone 10. 8 in diameter; 2.25 in height.",
     category: "bowls",
     inStock: false,
-    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+    stripeLinkLocal: null,
+    stripeLinkShipping: null
   },
   {
     id: 2,
@@ -43,7 +44,8 @@ const potteryItems = [
     description: "hand-thrown stoneware blates (bowl plates) in pistachio green glaze. fired at cone 10. 7 in diameter; 1.25 in height.",
     category: "blates",
     inStock: true,
-    stripeLink: "https://buy.stripe.com/7sYaEWa36bGC7ij3I21ZS02"
+    stripeLinkLocal: "https://buy.stripe.com/8x214m0sw8uq0TVcey1ZS0e",
+    stripeLinkShipping: "https://buy.stripe.com/6oU7sKfnq7qm5ab4M61ZS0f"
   },
   {
     id: 3,
@@ -60,7 +62,8 @@ const potteryItems = [
     description: "functional garlic grater in a beautiful rich green color. hand-thrown and hand-etched. 4.25in diameter x 1.15in height.",
     category: "functional",
     inStock: false,
-    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+    stripeLinkLocal: null,
+    stripeLinkShipping: null
   },
   {
     id: 4,
@@ -77,7 +80,8 @@ const potteryItems = [
     description: "cool blue matcha bowl. a fun little piece that i love! she's 5.5 in in diameter by 2.25 in height.",
     category: "matcha bowls",
     inStock: true,
-    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+    stripeLinkLocal: "https://buy.stripe.com/14A9ASejm5iegST92m1ZS0g",
+    stripeLinkShipping: "https://buy.stripe.com/9B6cN48Z2bGC3232DY1ZS0h"
   },
   {
     id: 5,
@@ -94,7 +98,8 @@ const potteryItems = [
     description: "a matcha bowl to match your favorite morning drink! 5 in diameter by 2.25 in height.",
     category: "matcha bowls",
     inStock: true,
-    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+    stripeLinkLocal: "https://buy.stripe.com/cNi4gy4IM2624676Ue1ZS0i",
+    stripeLinkShipping: "https://buy.stripe.com/fZubJ0fnqcKG0TVbau1ZS0j"
   },
   {
     id: 6,
@@ -111,7 +116,8 @@ const potteryItems = [
     description: "creamy pistachio matte bowl, hand-thrown. dimensions are 6 in diameter by 2.75 in height.",
     category: "bowls",
     inStock: true,
-    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+    stripeLinkLocal: "https://buy.stripe.com/5kQ6oG0sw6mi7ijemG1ZS0k",
+    stripeLinkShipping: "https://buy.stripe.com/28EaEW7UYfWS6ef2DY1ZS0l"
   },
   {
     id: 7,
@@ -127,7 +133,8 @@ const potteryItems = [
     description: "sea blue & white plate, double dipped cutie! she's 7 inches in diameter and 0.5 inches in height. she'll be perfect for your little appetizer or girl dinner.",
     category: "plates",
     inStock: true,
-    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+    stripeLinkLocal: "https://buy.stripe.com/bJedR8cbebGC6ef92m1ZS0m",
+    stripeLinkShipping: "https://buy.stripe.com/fZu14m3EIh0W6ef2DY1ZS0n"
   },
   {
     id: 8,
@@ -145,7 +152,8 @@ const potteryItems = [
     description: "beautiful taupe (romanticized as burnt butter) soup bowls in a matte glaze. 7 inches diameter x 3.25 inches height.",
     category: "bowls",
     inStock: false,
-    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+    stripeLinkLocal: null,
+    stripeLinkShipping: null
   },
   {
     id: 9,
@@ -162,7 +170,8 @@ const potteryItems = [
     description: "sea blue & white matcha bowl, bringing peace to every matcha routine. she's petite!",
     category: "matcha bowls",
     inStock: true,
-    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+    stripeLinkLocal: "https://buy.stripe.com/fZu9ASa362621XZdiC1ZS0o",
+    stripeLinkShipping: "https://buy.stripe.com/00waEWgru3a61XZ7Yi1ZS0p"
   },
   {
     id: 10,
@@ -182,7 +191,8 @@ const potteryItems = [
     description: "sea blue & white blates, perfect for pasta and honestly anything else you might be eating. she's 7 inches in diameter x 2.75 inches in height.",
     category: "blates",
     inStock: true,
-    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+    stripeLinkLocal: "https://buy.stripe.com/7sY28q6QUdOK6ef1zU1ZS0q",
+    stripeLinkShipping: "https://buy.stripe.com/aFacN41wAeSO0TV1zU1ZS0r"
   },
   {
     id: 11,
@@ -198,7 +208,8 @@ const potteryItems = [
     description: "vanilla cream soup bowl - a mix of creamy yellow and white! brightens your mood every time you eat from it :) she's 6.5 inches in diameter x 3 in in height.",
     category: "bowls",
     inStock: true,
-    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+    stripeLinkLocal: "https://buy.stripe.com/aFaaEWb7a3a66efbau1ZS0s",
+    stripeLinkShipping: "https://buy.stripe.com/3cI00i2AE7qmgSTa6q1ZS0t"
   },
   {
     id: 12,
@@ -214,7 +225,8 @@ const potteryItems = [
     description: "vanilla cream soup bowl - a mix of creamy yellow and white! brightens your mood every time you eat from it :) she's 6.5 inches in diameter x 3 in in height.",
     category: "bowls",
     inStock: true,
-    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+    stripeLinkLocal: "https://buy.stripe.com/14A7sKgru3a6auvdiC1ZS0u",
+    stripeLinkShipping: "https://buy.stripe.com/4gM00i5MQ3a69qr3I21ZS0v"
   },
   {
     id: 13,
@@ -232,7 +244,8 @@ const potteryItems = [
     description: "vanilla cream soup bowl - a mix of creamy yellow and white! brightens your mood every time you eat from it :) she's 6 inches in diameter x 3 in in height.",
     category: "bowls",
     inStock: true,
-    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+    stripeLinkLocal: "https://buy.stripe.com/14AbJ02AEeSOdGHfqK1ZS0w",
+    stripeLinkShipping: "https://buy.stripe.com/9B6dR85MQ7qm0TVa6q1ZS0x"
   },
   {
     id: 14,
@@ -248,7 +261,8 @@ const potteryItems = [
     description: "hand-thrown pear-shaped vase in a rich matte charcoal glaze. perfect for a statement piece or fresh flowers.",
     category: "functional",
     inStock: true,
-    stripeLink: "https://buy.stripe.com/test_REPLACE_WITH_YOUR_LINK"
+    stripeLinkLocal: "https://buy.stripe.com/dRmdR8dfi5ie9qr7Yi1ZS0y",
+    stripeLinkShipping: "https://buy.stripe.com/3cI7sK0sw9yucCDemG1ZS0z"
   }
 ];
 
@@ -293,8 +307,11 @@ function renderGallery(filter = 'all') {
     let buttonHTML;
     if (item.inStock) {
       buttonHTML = `
-        <a href="https://www.instagram.com/imdianaim/" target="_blank" class="btn">
-          In Stock - DM @imdianaim on instagram
+        <a href="${item.stripeLinkLocal}" target="_blank" class="btn">
+          Local Pickup — $${item.price}
+        </a>
+        <a href="${item.stripeLinkShipping}" target="_blank" class="btn btn-secondary">
+          Ship to me — $${item.price + 15}
         </a>
       `;
     } else {
@@ -662,7 +679,8 @@ document.addEventListener('DOMContentLoaded', function() {
      description: "your description here in lowercase.",
      category: "vases", // "mugs", "bowls", "vases", "plates"
      inStock: true,
-     stripeLink: "https://buy.stripe.com/your-link-here"
+     stripeLinkLocal: "https://buy.stripe.com/local-link-here",   // local pickup (no shipping)
+     stripeLinkShipping: "https://buy.stripe.com/shipping-link-here" // US shipping ($15 flat)
    }
 
    Refresh the page - it will automatically appear!
