@@ -39,14 +39,22 @@ Show the generated description to the user and ask: "Does this description work,
 **Question 5 — Images folder path**
 Ask: "What's the images folder path?" (e.g. `images/pottery/15_FolderName/`)
 
-**Question 6 — Image filenames**
-Ask: "List the image filenames, comma-separated." (e.g. `IMG_001.jpg, IMG_002.jpg, IMG_003.jpg`)
+After receiving the answer, use the Bash tool to list the files in that folder:
+```bash
+ls "/Users/dianaim/pottery-resume-site/FOLDER_PATH"
+```
 
-**Question 7 — Video filename**
-Ask: "Video filename? Type 'none' if there isn't one." (e.g. `IMG_004.mp4`)
+From the results, automatically separate files into:
+- **Images**: anything ending in `.jpg`, `.jpeg`, `.png`, `.webp`
+- **Video**: the first file ending in `.mp4`, `.mov`, or `.webm` (or `null` if none)
 
-**Question 8 — In stock?**
-Ask: "Is this item in stock?" with options: `yes`, `no`
+Show the user what was found and confirm before continuing:
+"Found these files — images: [list] / video: [filename or none]. Look right?"
+
+Wait for confirmation before proceeding.
+
+**Question 6 — Quantity**
+Ask: "How many do you have available?"
 
 ---
 
@@ -66,9 +74,9 @@ Read `/Users/dianaim/pottery-resume-site/shop.js`. Find the highest `id:` value 
 
 ---
 
-## Step 4: Create Stripe product + payment links (only if inStock = yes)
+## Step 4: Create Stripe product + payment links
 
-If the user said **yes** to in stock, run these four curl commands in sequence using the Bash tool. Replace placeholders with real values.
+Run these four curl commands in sequence using the Bash tool. Replace placeholders with real values.
 
 Set `PRICE_CENTS` = price × 100 (e.g. $30 → 3000).
 
@@ -112,8 +120,6 @@ Extract `url` from the response → this is `SHIP_URL`.
 
 If the response to any curl contains an `"error"` key, stop and show the error to the user before continuing.
 
-If the user said **no** to in stock, set `LOCAL_URL = null` and `SHIP_URL = null`.
-
 ---
 
 ## Step 5: Build the image array
@@ -151,22 +157,21 @@ The new item must be appended after the last existing item. Add a comma after th
     id: NEW_ID,
     name: "ITEM_NAME",
     price: PRICE_NUMBER,
+    quantity: QUANTITY_NUMBER,
     images: [IMAGE_ARRAY],
     video: VIDEO_VALUE,
     description: "DESCRIPTION",
     category: "CATEGORY",
-    inStock: INSTOCK_BOOLEAN,
-    stripeLinkLocal: LOCAL_URL_OR_NULL,
-    stripeLinkShipping: SHIP_URL_OR_NULL
+    inStock: true,
+    stripeLinkLocal: "LOCAL_URL",
+    stripeLinkShipping: "SHIP_URL"
   }
 ```
 
 Rules:
-- `id` is a number (no quotes)
-- `price` is a number (no quotes)
-- `inStock` is `true` or `false` (no quotes)
+- `id`, `price`, and `quantity` are numbers (no quotes)
+- `inStock` is always `true` (no quotes)
 - String values use double quotes
-- If `stripeLinkLocal` or `stripeLinkShipping` are null, write `null` (no quotes)
 - Match the exact formatting style of existing items in the file
 
 ---
