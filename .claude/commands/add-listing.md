@@ -17,8 +17,24 @@ Ask: "What's the price in dollars?" (numbers only, e.g. 30)
 **Question 3 — Category**
 Ask: "What category?" with these exact options: `bowls`, `blates`, `matcha bowls`, `plates`, `functional`
 
-**Question 4 — Description**
-Ask: "Write the description." Remind the user: lowercase, conversational, match the existing style in shop.js (e.g. "hand-thrown stoneware bowl in sage green glaze. fired at cone 10. 6 in diameter; 3 in height.")
+**Question 4 — Details for description**
+Ask: "Tell me about this piece — glaze, color, dimensions, anything special about it?" (raw details, not a polished description — e.g. "matte sage green, fired cone 10, 6in diameter 3in height, really pretty color")
+
+After receiving the answer, generate a description in Diana's voice before continuing to the next question. Use these existing descriptions as style references:
+- "cool blue matcha bowl. a fun little piece that i love! she's 5.5 in in diameter by 2.25 in height."
+- "sea blue & white plate, double dipped cutie! she's 7 inches in diameter and 0.5 inches in height. she'll be perfect for your little appetizer or girl dinner."
+- "creamy pistachio matte bowl, hand-thrown. dimensions are 6 in diameter by 2.75 in height."
+- "hand-thrown stoneware blates (bowl plates) in pistachio green glaze. fired at cone 10. 7 in diameter; 1.25 in height."
+- "vanilla cream soup bowl - a mix of creamy yellow and white! brightens your mood every time you eat from it :) she's 6.5 inches in diameter x 3 in in height."
+
+Style rules:
+- All lowercase
+- Warm, personal, conversational — like a friend describing a piece they made
+- Mention color/glaze, type, and dimensions
+- It's ok to add a little personality ("she's a cutie", "perfect for your morning matcha", ":)")
+- Keep it 1–2 sentences max
+
+Show the generated description to the user and ask: "Does this description work, or would you like to tweak it?" Wait for confirmation or edits before continuing. Use the confirmed description in the listing.
 
 **Question 5 — Images folder path**
 Ask: "What's the images folder path?" (e.g. `images/pottery/15_FolderName/`)
