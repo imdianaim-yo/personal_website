@@ -26,3 +26,7 @@ favicon_base.png
 favicon.svg
 generate-favicon.html
 Screenshot*.png
+
+# Pottery shop secrets — never commit these
+.pottery-config
+stripe-links-output.json
